@@ -53,6 +53,11 @@ func TestManagerAppleDNSModes(t *testing.T) {
 					primary: true,
 				},
 				{
+					name:    "mode-b-onion-split-resolver",
+					edit:    func(c *Config) { c.Routes["onion."] = mustRes("100.64.0.53") },
+					primary: true,
+				},
+				{
 					name:    "mode-b-uncovered-forward-host",
 					edit:    func(c *Config) { c.Hosts["extra.example."] = mustIPs("100.64.0.9") },
 					primary: true,

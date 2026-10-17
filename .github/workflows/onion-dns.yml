@@ -1,0 +1,38 @@
+name: Fork DNS checks
+
+on:
+  push:
+    branches: ["codex/onion-split-dns"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: fork-dns-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  dns:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-15, ubuntu-24.04]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@4b73464bb391d4059bd26b0524d20df3927bd417 # v6.3.0
+        with:
+          go-version-file: go.mod
+          cache: false
+      - name: DNS and control-plane configuration
+        run: |
+          go test ./net/dns/... -count=1
+          go test ./ipn/ipnlocal -run '^TestDNSConfigForNetmap$' -count=1
+      - name: Resolver race checks
+        run: go test -race ./net/dns/resolver -count=1
+      - name: Build CLI, daemon and isolated probe
+        run: go build ./cmd/tailscale ./cmd/tailscaled ./fork/dnsprobe

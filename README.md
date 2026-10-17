@@ -1,5 +1,8 @@
 # Tailscale
 
+This personal fork adds `.onion` support through the tailnet's existing split-DNS
+configuration. See [fork status, tests and benchmarks](fork/README.md).
+
 https://tailscale.com
 
 Private WireGuard® networks made easy

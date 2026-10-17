@@ -1178,6 +1178,7 @@ func applySchemes(logf logger.Logf, rrs []resolverAndDelay, schemes views.Map[st
 
 // resolvers returns the resolvers to use for domain.
 func (f *forwarder) resolvers(domain dnsname.FQDN) []resolverAndDelay {
+	onion := dnsname.FQDN("onion.").Contains(domain)
 	f.mu.Lock()
 	routes := f.routes
 	cloudHostFallback := f.cloudHostFallback
@@ -1185,6 +1186,12 @@ func (f *forwarder) resolvers(domain dnsname.FQDN) []resolverAndDelay {
 	f.mu.Unlock()
 
 	for _, route := range routes {
+		// Only an explicit onion route (or a more specific child) may handle
+		// onion names. In particular, never fall back to the default route
+		// when a custom scheme is unavailable or a route has been removed.
+		if onion && !dnsname.FQDN("onion.").Contains(route.Suffix) {
+			continue
+		}
 		if route.Suffix != "." && !route.Suffix.Contains(domain) {
 			continue
 		}
@@ -1195,6 +1202,9 @@ func (f *forwarder) resolvers(domain dnsname.FQDN) []resolverAndDelay {
 		if len(resolved) > 0 || len(route.Resolvers) == 0 {
 			return resolved
 		}
+	}
+	if onion {
+		return nil
 	}
 	return cloudHostFallback // or nil if no fallback
 }

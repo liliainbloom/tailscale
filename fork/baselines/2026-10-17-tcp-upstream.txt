@@ -1,0 +1,30 @@
+goos: darwin
+goarch: arm64
+pkg: tailscale.com/net/dns/resolver
+cpu: Apple M4 Pro
+BenchmarkDNSRouteBaseline/ForwardTCP-12         	     500	    101166 ns/op	   12936 B/op	     148 allocs/op
+goos: darwin
+goarch: arm64
+pkg: tailscale.com/net/dns/resolver
+cpu: Apple M4 Pro
+BenchmarkDNSRouteBaseline/ForwardTCP-12         	     500	    105198 ns/op	   12939 B/op	     148 allocs/op
+goos: darwin
+goarch: arm64
+pkg: tailscale.com/net/dns/resolver
+cpu: Apple M4 Pro
+BenchmarkDNSRouteBaseline/ForwardTCP-12         	     500	    110188 ns/op	   12979 B/op	     148 allocs/op
+goos: darwin
+goarch: arm64
+pkg: tailscale.com/net/dns/resolver
+cpu: Apple M4 Pro
+BenchmarkDNSRouteBaseline/ForwardTCP-12         	     500	    117336 ns/op	   12997 B/op	     148 allocs/op
+goos: darwin
+goarch: arm64
+pkg: tailscale.com/net/dns/resolver
+cpu: Apple M4 Pro
+BenchmarkDNSRouteBaseline/ForwardTCP-12         	     500	    115834 ns/op	   12975 B/op	     148 allocs/op
+goos: darwin
+goarch: arm64
+pkg: tailscale.com/net/dns/resolver
+cpu: Apple M4 Pro
+BenchmarkDNSRouteBaseline/ForwardTCP-12         	     500	    116582 ns/op	   12969 B/op	     148 allocs/op

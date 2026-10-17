@@ -73,6 +73,27 @@ func TestDNSConfigForNetmap(t *testing.T) {
 			},
 		},
 		{
+			// Onion routing comes from the ordinary control-plane DNS map;
+			// the client needs no separate gateway address or local override.
+			name: "onion_split_dns_from_control_plane",
+			os:   "darwin",
+			nm: &netmap.NetworkMap{
+				DNS: tailcfg.DNSConfig{
+					Routes: map[string][]*dnstype.Resolver{
+						"onion": {{Addr: "100.64.0.53"}},
+					},
+				},
+			},
+			prefs: &ipn.Prefs{CorpDNS: true},
+			want: &dns.Config{
+				AcceptDNS: true,
+				Hosts:     map[dnsname.FQDN][]netip.Addr{},
+				Routes: map[dnsname.FQDN][]*dnstype.Resolver{
+					"onion.": {{Addr: "100.64.0.53"}},
+				},
+			},
+		},
+		{
 			name: "self_name_and_peers",
 			os:   "windows", // the full Hosts map is built only for the Windows hosts-file path
 			nm: &netmap.NetworkMap{

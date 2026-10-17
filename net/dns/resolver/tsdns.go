@@ -724,8 +724,11 @@ func stubResolverForOS() (ip netip.Addr, err error) {
 // authoritative for domain.
 func (r *Resolver) resolveLocal(domain dnsname.FQDN, typ dns.Type) (netip.Addr, dns.RCode) {
 	metricDNSResolveLocal.Add(1)
-	// Reject .onion domains per RFC 7686.
-	if dnsname.HasSuffix(domain.WithoutTrailingDot(), ".onion") {
+	// Reject .onion unless the tailnet explicitly routes it to a resolver.
+	// A default resolver is not sufficient: onion names must not leak into
+	// ordinary DNS. The forwarder also enforces this when it selects a route,
+	// including if the config changes between this lookup and forwarding.
+	if dnsname.FQDN("onion.").Contains(domain) && len(r.forwarder.resolvers(domain)) == 0 {
 		metricDNSResolveLocalErrorOnion.Add(1)
 		return netip.Addr{}, dns.RCodeNameError
 	}

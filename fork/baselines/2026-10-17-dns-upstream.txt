@@ -1,0 +1,48 @@
+goos: darwin
+goarch: arm64
+pkg: tailscale.com/net/dns/resolver
+cpu: Apple M4 Pro
+BenchmarkDNSRouteBaseline/SelectDefault-12         	100000000	         5.624 ns/op	       0 B/op	       0 allocs/op
+BenchmarkDNSRouteBaseline/MagicDNS-12              	 1912040	       310.6 ns/op	     528 B/op	       2 allocs/op
+BenchmarkDNSRouteBaseline/BlockedOnion-12          	 2219739	       269.5 ns/op	     528 B/op	       2 allocs/op
+BenchmarkDNSRouteBaseline/ForwardUDP-12            	    7353	     94328 ns/op	    9089 B/op	      78 allocs/op
+goos: darwin
+goarch: arm64
+pkg: tailscale.com/net/dns/resolver
+cpu: Apple M4 Pro
+BenchmarkDNSRouteBaseline/SelectDefault-12         	100000000	         5.559 ns/op	       0 B/op	       0 allocs/op
+BenchmarkDNSRouteBaseline/MagicDNS-12              	 1978446	       304.9 ns/op	     528 B/op	       2 allocs/op
+BenchmarkDNSRouteBaseline/BlockedOnion-12          	 2212514	       271.5 ns/op	     528 B/op	       2 allocs/op
+BenchmarkDNSRouteBaseline/ForwardUDP-12            	    7567	     93501 ns/op	    9085 B/op	      78 allocs/op
+goos: darwin
+goarch: arm64
+pkg: tailscale.com/net/dns/resolver
+cpu: Apple M4 Pro
+BenchmarkDNSRouteBaseline/SelectDefault-12         	100000000	         5.627 ns/op	       0 B/op	       0 allocs/op
+BenchmarkDNSRouteBaseline/MagicDNS-12              	 1948266	       306.4 ns/op	     528 B/op	       2 allocs/op
+BenchmarkDNSRouteBaseline/BlockedOnion-12          	 2219062	       270.9 ns/op	     528 B/op	       2 allocs/op
+BenchmarkDNSRouteBaseline/ForwardUDP-12            	    7471	     97476 ns/op	    9083 B/op	      78 allocs/op
+goos: darwin
+goarch: arm64
+pkg: tailscale.com/net/dns/resolver
+cpu: Apple M4 Pro
+BenchmarkDNSRouteBaseline/SelectDefault-12         	100000000	         5.567 ns/op	       0 B/op	       0 allocs/op
+BenchmarkDNSRouteBaseline/MagicDNS-12              	 1934502	       310.2 ns/op	     528 B/op	       2 allocs/op
+BenchmarkDNSRouteBaseline/BlockedOnion-12          	 2220658	       271.9 ns/op	     528 B/op	       2 allocs/op
+BenchmarkDNSRouteBaseline/ForwardUDP-12            	    7545	     91252 ns/op	    9089 B/op	      78 allocs/op
+goos: darwin
+goarch: arm64
+pkg: tailscale.com/net/dns/resolver
+cpu: Apple M4 Pro
+BenchmarkDNSRouteBaseline/SelectDefault-12         	100000000	         5.554 ns/op	       0 B/op	       0 allocs/op
+BenchmarkDNSRouteBaseline/MagicDNS-12              	 1954370	       307.3 ns/op	     528 B/op	       2 allocs/op
+BenchmarkDNSRouteBaseline/BlockedOnion-12          	 2234565	       270.1 ns/op	     528 B/op	       2 allocs/op
+BenchmarkDNSRouteBaseline/ForwardUDP-12            	    7339	     95823 ns/op	    9085 B/op	      78 allocs/op
+goos: darwin
+goarch: arm64
+pkg: tailscale.com/net/dns/resolver
+cpu: Apple M4 Pro
+BenchmarkDNSRouteBaseline/SelectDefault-12         	100000000	         5.566 ns/op	       0 B/op	       0 allocs/op
+BenchmarkDNSRouteBaseline/MagicDNS-12              	 1935981	       308.4 ns/op	     528 B/op	       2 allocs/op
+BenchmarkDNSRouteBaseline/BlockedOnion-12          	 2205235	       272.2 ns/op	     528 B/op	       2 allocs/op
+BenchmarkDNSRouteBaseline/ForwardUDP-12            	    7773	     87665 ns/op	    9091 B/op	      78 allocs/op
